@@ -1,6 +1,8 @@
 from pathlib import Path
 import joblib
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -22,6 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_DIR = BASE_DIR / "models"
 
 MODEL_DIR.mkdir(exist_ok=True)
+RESULTS_DIR = BASE_DIR / "results"
+RESULTS_DIR.mkdir(exist_ok=True)
 
 
 print("=" * 60)
@@ -146,8 +150,36 @@ print(classification_report(
     target_names=["Fake", "Real"]
 ))
 
+# Create confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
 print("Confusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
+print(cm)
+
+# Plot confusion matrix
+plt.figure(figsize=(7, 5))
+
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt="d",
+    xticklabels=["Fake", "Real"],
+    yticklabels=["Fake", "Real"]
+)
+
+plt.xlabel("Predicted Label")
+plt.ylabel("Actual Label")
+plt.title("Fake News Detector - Confusion Matrix")
+
+# Save chart
+confusion_matrix_path = RESULTS_DIR / "confusion_matrix.png"
+plt.savefig(confusion_matrix_path, bbox_inches="tight")
+
+plt.show()
+plt.close()
+
+print("\nConfusion Matrix chart saved at:")
+print(confusion_matrix_path)
 
 
 # ---------------------------------------------------------
