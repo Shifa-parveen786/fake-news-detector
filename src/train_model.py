@@ -103,7 +103,8 @@ tfidf = TfidfVectorizer(
     max_features=50000,
     ngram_range=(1, 2),
     min_df=2,
-    max_df=0.95
+    max_df=0.95,
+    token_pattern=r"(?u)\b\w+(?:\.\w+)*\b"
 )
 
 X_train_tfidf = tfidf.fit_transform(X_train)

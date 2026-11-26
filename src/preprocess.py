@@ -7,6 +7,7 @@ from nltk.stem import WordNetLemmatizer
 
 # NLTK tools
 stop_words = set(stopwords.words("english"))
+stop_words = stop_words - {"not", "no", "never"}
 lemmatizer = WordNetLemmatizer()
 
 
@@ -31,8 +32,8 @@ def clean_text(text):
     # Remove URLs
     text = re.sub(r"http\S+|www\S+", " ", text)
 
-    # Remove punctuation and numbers
-    text = re.sub(r"[^a-zA-Z\s]", " ", text)
+     # Remove punctuation but preserve numbers and decimal points
+    text = re.sub(r"(?<!\d)\.(?!\d)|[^a-zA-Z0-9.\s]", " ", text)
 
     # Remove extra spaces
     text = re.sub(r"\s+", " ", text).strip()

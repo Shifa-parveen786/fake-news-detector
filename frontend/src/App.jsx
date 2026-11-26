@@ -4,6 +4,8 @@ import "./index.css";
 function App() {
   const [news, setNews] = useState("");
   const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -13,24 +15,44 @@ function App() {
   // Flask API connection will be added in the next step.
   // ---------------------------------------------------------
 
-  const handleCheckNews = () => {
-    if (!news.trim()) {
-      alert("Please enter a news headline or article.");
-      return;
+  
+const handleCheckNews = async () => {
+  if (!news.trim()) {
+    alert("Please enter a news headline or article.");
+    return;
+  }
+
+  setLoading(true);
+  setError("");
+  setResult(null);
+
+  try {
+    const response = await fetch("http://127.0.0.1:5000/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ news: news })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Prediction failed.");
     }
 
     setResult({
-      prediction: "REAL",
-      confidence: 99.28,
-      signals: [
-        "technology",
-        "research",
-        "system",
-        "energy",
-        "new"
-      ]
+      prediction: data.prediction,
+      confidence: Number(data.confidence),
+      signals: data.model_signals || []
     });
-  };
+
+  } catch (err) {
+    setError(err.message || "Unable to connect to the server.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="app">
@@ -106,12 +128,19 @@ function App() {
             rows="8"
           />
 
-          <button
-            className="check-btn"
-            onClick={handleCheckNews}
-          >
-            Check News
-          </button>
+         <button
+  className="check-btn"
+  onClick={handleCheckNews}
+  disabled={loading}
+>
+  {loading ? "Analyzing..." : "Check News"}
+</button>
+
+{error && (
+  <p style={{ color: "red", marginTop: "10px" }}>
+    {error}
+  </p>
+)}
 
 
           {/* =================================================

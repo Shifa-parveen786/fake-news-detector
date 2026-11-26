@@ -1,0 +1,21 @@
+Topic,News,Expected,Predicted,Confidence,Correct
+Science,The Earth revolves around the Sun.,REAL,FAKE,71.76,False
+Science,Water freezes at zero degrees Celsius.,REAL,FAKE,77.43,False
+Biology,Plants use sunlight for photosynthesis.,REAL,FAKE,62.54,False
+Biology,The human heart pumps blood.,REAL,FAKE,61.48,False
+Technology,Computers process data using electronic circuits.,REAL,REAL,53.05,True
+Science,The Moon revolves around the Earth.,REAL,FAKE,60.22,False
+Geography,The Pacific Ocean is the largest ocean on Earth.,REAL,FAKE,56.18,False
+Science,Sound travels through air as a wave.,REAL,FAKE,64.81,False
+Biology,The human body contains many different organs.,REAL,FAKE,53.57,False
+Astronomy,The Sun is a star.,REAL,FAKE,63.99,False
+Science,Scientists confirm that the Moon is made entirely of cheese.,FAKE,FAKE,51.88,True
+Science,Researchers claim that water naturally freezes at 100 degrees Celsius at normal pressure.,FAKE,FAKE,79.75,True
+Biology,A new study claims that plants can grow without water or light.,FAKE,FAKE,79.59,True
+Technology,A report claims that ordinary computers can run without electricity.,FAKE,FAKE,70.35,True
+Astronomy,A viral report claims that the Sun revolves around the Earth every day.,FAKE,FAKE,89.44,True
+Science,Scientists claim that humans can breathe normally in outer space without equipment.,FAKE,FAKE,67.87,True
+Biology,A fictional report claims that the human heart is located inside the foot.,FAKE,FAKE,84.79,True
+Geography,A viral claim says that the Pacific Ocean is smaller than a swimming pool.,FAKE,FAKE,71.71,True
+Technology,A fictional article claims that mobile phones work without any power source.,FAKE,FAKE,66.77,True
+Science,A false claim says that sound travels faster in a vacuum than in air.,FAKE,FAKE,71.69,True

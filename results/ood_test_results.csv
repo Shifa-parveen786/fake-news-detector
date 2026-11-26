@@ -1,0 +1,6 @@
+Topic,News,Expected,Predicted,Confidence,Correct
+Science,The Earth revolves around the Sun.,REAL,FAKE,71.76,False
+Science,Water freezes at zero degrees Celsius under standard atmospheric pressure.,REAL,FAKE,70.52,False
+Biology,Plants use sunlight to make food through photosynthesis.,REAL,FAKE,68.84,False
+Biology,The human heart pumps blood throughout the body.,REAL,FAKE,60.12,False
+Astronomy,The Moon revolves around the Earth.,REAL,FAKE,60.22,False
