@@ -1,6 +1,7 @@
 
 import pandas as pd
 from predict import predict_news
+print("Generalization test started...")
 from pathlib import Path
 
 test_data = [
